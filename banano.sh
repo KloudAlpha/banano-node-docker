@@ -98,21 +98,6 @@ fi
 [[ $quiet = 'false' ]] && echo "=> ${yellow}Checking initial status...${reset}"
 [[ $quiet = 'false' ]] && echo ""
 
-# check if node mounted directory exists
-if [ -d "./banano-node" ]; then
-    # check if mounted directory follows the new /root structure
-    if [ ! -d "./banano-node/Banano" ]; then
-        if [ ! -d "./banano-node/Banano" ]; then
-            [[ $quiet = 'false' ]] && printf "${reset}Unsupported directory structure detected. Migrating files... "
-            mkdir ./banano-node/Banano
-            # move everything into subdirectory and suppress the error about itself
-            mv ./banano-node/* ./banano-node/Banano/ &> /dev/null
-            [[ $quiet = 'false' ]] && printf "${green}done.\n${reset}"
-            [[ $quiet = 'false' ]] && echo ""
-        fi
-    fi
-fi
-
 # SPIN UP THE APPROPRIATE STACK
 [[ $quiet = 'false' ]] && echo "=> ${yellow}Pulling images and spinning up containers...${reset}"
 [[ $quiet = 'false' ]] && echo ""
